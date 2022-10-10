@@ -1,10 +1,8 @@
-import React from "react"
-
-const listadoPacientes= ()=>{
+function ListadoPacientes(){
     return(
-        <h2>Listado</h2>
+        <h2>Listado de Pacientes</h2>
     )
 }
 
-export default listadoPacientes
+export default ListadoPacientes
 

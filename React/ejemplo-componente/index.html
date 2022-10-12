@@ -5,13 +5,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi ejemplo de Componente</title>
-    <script defer src="./app.js"></script>
+    <title>Mi ejemplo de Componente con React</title>
+    <script defer src="./app-react.js"></script>
     <link rel="stylesheet" href="style.css">
+    <!-- agregamos estas lineas desde react.org para integrar react al proyecto (1 min)-->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
 </head>
 
 <body>
     <h1>RoadMap 2022</h1>
+    <!-- esta linea de div-root debe presentarse para ahi pintar lo proveniente de React, de otro modo oculta TODO lo que exista en el html/body de forma automatica-->
+    <div id="root"></div>
 </body>
 
 </html>

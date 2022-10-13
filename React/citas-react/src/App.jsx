@@ -7,11 +7,14 @@ copiar el local y pegar en el navegador = live server
 
 import Header from './componentes/header.jsx'
 import ListadoPacientes from './componentes/listadoPaciente.jsx'
+import FormatoRegistro from './componentes/formulario.jsx'
 
 function App() {
 return(
   <>
   <Header/>
+  
+  <FormatoRegistro/>
   <ListadoPacientes/>
   </>
 )

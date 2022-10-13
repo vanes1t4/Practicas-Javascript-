@@ -1,6 +1,6 @@
 function Header(){
     return(
-        <h1>Hola, es mi primer componente</h1>
+        <h1>Administración de Citas</h1>
     )
 }
 

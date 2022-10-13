@@ -11,12 +11,12 @@ import FormatoRegistro from './componentes/formulario.jsx'
 
 function App() {
 return(
-  <>
+  <div className="container mx-auto mx-15">
   <Header/>
   
   <FormatoRegistro/>
   <ListadoPacientes/>
-  </>
+  </div>
 )
 }
 

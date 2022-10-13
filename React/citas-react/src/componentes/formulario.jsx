@@ -1,15 +1,19 @@
 import React from "react";
 
-function FormatoRegistro() {
+const FormatoRegistro = () => {
   
   return (
-    <form className="formulario"
+    <div className="md:w-1/2 lg:w-2/5">
+      <h2 className="font-black text-3xl text-center">Seguimiento de Citas</h2>
+      <p className="mt-5 text-center text-lg">Añada Pacientes 
+      <span className="text-red-500 font-bold"> Administrarlos</span>
+      </p>
+    <form
       onSubmit={ev => {
         ev.preventDefault();
         
       }}
     >
-      <h2>Registro de Citas</h2><br />
       <label htmlFor="nombre">Nombre Paciente</label><br />
       <input
         id="nombre"
@@ -51,11 +55,11 @@ function FormatoRegistro() {
         placeholder="Sintomas que presenta.."
         
          /><br />
-      <button
+      <input
         name="registraCita"
         type="submit"
         value="Registrar Cita" />
-    </form>
+    </form></div>
   )
 
 }

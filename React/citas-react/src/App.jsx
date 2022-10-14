@@ -11,7 +11,7 @@ import FormatoRegistro from './componentes/formulario.jsx'
 
 function App() {
 return(
-  <div className="container mx-auto mx-15">
+  <div className="container mx-15 ml-5">
   <Header/>
   <FormatoRegistro/>
   <ListadoPacientes/>

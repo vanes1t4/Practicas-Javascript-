@@ -3,7 +3,7 @@ import React from "react";
 const FormatoRegistro = () => {
   
   return (
-    <div className="md:w-1/2 lg:w-2/5 mx-5">
+    <div className="md:w-1/2 lg:w-2/5">
       <h2 className="font-black text-3xl text-center">Seguimiento de Citas</h2>
       <p className="mt-5 text-center text-lg mb-10">Agregar Pacientes 
       <span className="text-red-500 font-bold"> Administrarlos</span>

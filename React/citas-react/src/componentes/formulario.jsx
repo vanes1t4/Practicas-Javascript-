@@ -1,7 +1,27 @@
-import React from "react";
+//useEffect - (hook) me ayuda a realizar todo tipo de operacion incluyendo un efecto secundario,
+//          remplazar los metodos de las clases y actualizar con cada modificacion
+// Reglas de hook- siempre tienen que estar arriba de nuestros componentes
+//                 no debe colocarse en un condicional
+//                 nunca despues del return 
+
+import React, { useState, useEffect} from "react";
 
 const FormatoRegistro = () => {
-  
+  //variables que necesitare para actualizar el estado de mis componentes de formulario
+  //setMascota solo funciona de modificador pero no guarda el valor
+  //useState - hook que me dice el estado, inicia vacio
+  const [mascota,setMascota] = useState('')
+  const [propietario, setPropietario] = useState('')
+  const [correo, setCorreo] = useState('')
+  const [fecha, setFecha] = useState('')
+  const [sintomas, setSintomas] = useState('')
+
+  const validacionFormulario = (e) =>{
+e. preventDefault()
+if([mascota, propietario, correo, fecha,sintomas].includes(''))
+console.log('Hay al menos un campo vacio, verifique.')
+  }
+
   return (
     <div className="md:w-1/2 lg:w-2/5">
       <h2 className="font-black text-3xl text-center">Seguimiento de Citas</h2>
@@ -9,7 +29,9 @@ const FormatoRegistro = () => {
       <span className="text-red-500 font-bold"> Administrarlos</span>
       </p>
     <form
-    className="bg-slate-200 rounded-lg py-10 px-5 mb-10 shadow-md" >
+    className="bg-slate-200 rounded-lg py-10 px-5 mb-10 shadow-md" 
+      onSubmit = { validacionFormulario }
+      >
       <div>
       <label 
       htmlFor="mascota"
@@ -20,6 +42,7 @@ const FormatoRegistro = () => {
         type="text"
         placeholder="Nombre de Mascota.."
         className="border-2 w-full p-2 mt-2 placeholder-gray-600 rounded-md"
+        onChange={(e) => setMascota(e.target.value)}
       /></div>
 <div>
       <label 
@@ -31,6 +54,7 @@ const FormatoRegistro = () => {
         type="text"
         placeholder="Nombre del propietario.."
         className="border-2 w-full p-2 mt-2 placeholder-gray-600 rounded-md"
+        onChange={(e) => setPropietario(e.target.value)}
         /></div>
 <div>
 <label 
@@ -42,6 +66,7 @@ const FormatoRegistro = () => {
         type="email"
         placeholder="Correo Electronico.."
         className="border-2 w-full p-2 mt-2 placeholder-gray-600 rounded-md"
+        onChange={(e) => setCorreo(e.target.value)}
         /></div>
 <div>
       <label 
@@ -52,6 +77,7 @@ const FormatoRegistro = () => {
         id="fecha"
         type="date"
         className="border-2 w-full p-2 mt-2 placeholder-gray-600 rounded-md"
+        onChange={(e) => setFecha(e.target.value)}
       /></div>
 <div>
       <label
@@ -63,8 +89,11 @@ const FormatoRegistro = () => {
         name="sintomas"
         placeholder="Sintomas que presenta.."
         className="border-2 w-full p-2 mt-2 placeholder-gray-600 rounded-md resize-none"
+        onChange={(e) => setSintomas(e.target.value)}
       /></div>
-      
+      <input 
+      type="submit" 
+      className="bg-indigo-500 text-white font-bold uppercase hover:{bg-indigo-700} cursor-pointer p-2 rounded-md" />
     </form></div>
   )
 

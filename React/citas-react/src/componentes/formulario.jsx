@@ -7,7 +7,7 @@
 import React, { useState, useEffect } from "react";
 import ManejoError from "./manejoError";
 
-function FormatoRegistro ({pacientes,setPacientes}) {
+function FormatoRegistro ({pacientes,setPacientes, paciente, setPaciente}) {
   //variables que necesitare para actualizar el estado de mis componentes de formulario
   //setMascota solo funciona de modificador pero no guarda el valor
   //useState - hook que me dice el estado, inicia vacio
@@ -17,6 +17,12 @@ function FormatoRegistro ({pacientes,setPacientes}) {
   const [fecha, setFecha] = useState('')
   const [sintomas, setSintomas] = useState('')
   const [error, setError] = useState(false)
+
+  const generarId = () => {
+    const random = Math.random().toString(36)
+    const fecha = Date.now().toString(36)
+    return random + fecha
+  }
 
   const validacionFormulario = (e) => {
     e.preventDefault()
@@ -29,6 +35,16 @@ function FormatoRegistro ({pacientes,setPacientes}) {
     //limpiando el formulario
     setError(false)
     const objPaciente = {mascota,propietario,fecha, correo,sintomas}
+    if(paciente.id){
+      objPaciente.id = paciente.id
+      const pacientesActualizados = pacientes.map(pacienteState => pacienteState.id === paciente.id ? objPaciente : pacienteState)
+    setPacientes(pacientesActualizados)
+    setPaciente({})
+    }else{
+      objPaciente.id = generarId()
+      setPacientes([...pacientes, objPaciente])
+    
+    }
     setPacientes([...pacientes,objPaciente])
     setMascota('')
     setPropietario('')
@@ -117,7 +133,7 @@ function FormatoRegistro ({pacientes,setPacientes}) {
         <input
           type="submit"
           className="bg-indigo-500 text-white font-bold uppercase hover:{bg-indigo-700} cursor-pointer p-2 rounded-md"
-          value={'Agregar'}
+          value={paciente.id?'Editar Paciente' : 'Agregar Paciente'}
           />
 
       </form></div>

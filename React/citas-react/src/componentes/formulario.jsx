@@ -7,10 +7,11 @@
 import React, { useState, useEffect } from "react";
 import ManejoError from "./manejoError";
 
-function FormatoRegistro ({pacientes,setPacientes, paciente, setPaciente}) {
+function FormatoRegistro({ pacientes, setPacientes, paciente, setPaciente }) {
   //variables que necesitare para actualizar el estado de mis componentes de formulario
   //setMascota solo funciona de modificador pero no guarda el valor
   //useState - hook que me dice el estado, inicia vacio
+
   const [mascota, setMascota] = useState('')
   const [propietario, setPropietario] = useState('')
   const [correo, setCorreo] = useState('')
@@ -30,28 +31,42 @@ function FormatoRegistro ({pacientes,setPacientes, paciente, setPaciente}) {
     if ([mascota, propietario, correo, fecha, sintomas].includes('')) {
       console.log('Hay al menos un campo vacio, verifique.')
       setError(true)
-      return 
+      return
     }
-    //limpiando el formulario
     setError(false)
-    const objPaciente = {mascota,propietario,fecha, correo,sintomas}
-    if(paciente.id){
+
+    const objPaciente = { mascota, propietario, fecha, correo, sintomas }
+    console.log('Llave recibida: '+paciente.id)
+    if (paciente.id) {
       objPaciente.id = paciente.id
       const pacientesActualizados = pacientes.map(pacienteState => pacienteState.id === paciente.id ? objPaciente : pacienteState)
-    setPacientes(pacientesActualizados)
-    setPaciente({})
-    }else{
+      setPacientes(pacientesActualizados)
+      setPaciente({})
+    } else {
       objPaciente.id = generarId()
+      console.log('Llave generada: '+objPaciente.id)
       setPacientes([...pacientes, objPaciente])
-    
+
     }
-    setPacientes([...pacientes,objPaciente])
+    setPacientes([...pacientes, objPaciente])
     setMascota('')
     setPropietario('')
     setCorreo('')
     setFecha('')
     setSintomas('')
   }
+
+  useEffect(() => {
+    //verificando que haya algo por llaves
+    if (Object.keys(paciente).length > 0){
+      setMascota(paciente.mascota)
+      setPropietario(paciente.propietario)
+      setCorreo(paciente.correo)
+      setFecha(paciente.fecha)
+      setSintomas(paciente.sintomas)
+    }
+  }, [paciente])
+
 
   return (
     <div className="md:w-1/2 lg:w-2/5">
@@ -63,8 +78,8 @@ function FormatoRegistro ({pacientes,setPacientes, paciente, setPaciente}) {
         className="bg-slate-200 rounded-lg py-10 px-5 mb-10 shadow-md"
         onSubmit={validacionFormulario}
       >
-        {error && 
-         <ManejoError><p>Todos los campos son obligatorios</p></ManejoError>
+        {error &&
+          <ManejoError><p>Todos los campos son obligatorios</p></ManejoError>
         }
         <div>
           <label
@@ -133,8 +148,8 @@ function FormatoRegistro ({pacientes,setPacientes, paciente, setPaciente}) {
         <input
           type="submit"
           className="bg-indigo-500 text-white font-bold uppercase hover:{bg-indigo-700} cursor-pointer p-2 rounded-md"
-          value={paciente.id?'Editar Paciente' : 'Agregar Paciente'}
-          />
+          value={paciente.id ? 'Editar Paciente' : 'Agregar Paciente'}
+        />
 
       </form></div>
   )
